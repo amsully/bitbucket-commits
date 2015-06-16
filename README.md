@@ -1,5 +1,5 @@
 # bitbucket-commits
-Don't let private bitbucket repos ruin your github streak! Create you github 'bitbucket' repo and any push to your bitbucket push will be recorded as a commit in this directory :)
+Don't let private bitbucket repos ruin your github streak! Create your own github 'bitbucket' repo and record any bitbucket commit on github without committing the code... with one command! 
 
 ## Reqs'
 Developed and tested: Ubuntu 14.04
