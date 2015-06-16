@@ -6,14 +6,18 @@ bflag=''
 files=''
 
 
-# String 'mc' is list of flags.
+# Loop through arguments
 while getopts 'mcr' flag; do
 
-	# Flag -m -c
   case "${flag}" in
+
+  	# Commit message
     m) 
-		repo_string=$""
-		git_string=""
+		
+		repo_string=$""	 # Added to auto-commits
+		git_string="git commit" # Run as bitbucket push command
+		
+		# For loop requires -m "message" -m "message"  ... structure.
 		for index in "$@"
 		do
 			if [ "$index" != "-m" ]; then
@@ -23,15 +27,21 @@ $index"
 			fi
 		done
 		
+		# push to bitbucket
+		eval $git_string
+		git push
+		echo "bitbucket push successful"
+
+		# auto-commit to github
 		printf "$repo_string">/etc/bitbucket-commits/commits
-		echo "$git_string"
 		cd /etc/bitbucket-commits
 		git add commits
-		git commit $git_string
-		git push
-		cd .
-		ls
+		git commit -m "Auto-Commit"
+		git push --set-upstream origin master
+		echo "github push successful"
 		;;
+
+	# Configure Repo and Config file
 	c) 
 		echo "github_url=\"$2\"">/etc/.bitbucket.cfg
 		mkdir /etc/bitbucket-commits
@@ -40,6 +50,8 @@ $index"
 		git init
 		git remote add origin "$2"
 		git push origin master
+		echo "config established at /etc/.bitbucket.cfg"
+		echo "auto directory established at /etc/bitbucket-commits"
 		;;
 	r) source .bitbucket.cfg
 		echo "$github_url"
@@ -47,16 +59,4 @@ $index"
     *) error "Unexpected option ${flag}" ;;
   esac
 done
-
-
-# bitbucket-commit -c "git@github.com@amsully/bitbucket-commits.com"
-	# set git_repo variable to  -> 
-	# create file txt for messages
-# bitbucket-commit -m "TITLE" -m "Description"
-	# git commit -m "TITLE" -m "Description" -- this commits to butbucket
-	# open local file 
-	# cat the messages -
-	# push to git repo
-
-
 
