@@ -3,6 +3,7 @@ Don't let private bitbucket repos ruin your github streak! Create your own githu
 
 ## Reqs'
 Developed and tested: Ubuntu 14.04
+
 Tested: OSX
 
 ## Set-Up
@@ -61,11 +62,10 @@ git commit-bitbucket -m "My streak is alive and I pushed to bitbucket!"
 
 ##TODO:
 - Implement error handling (currently very much only a script)
-- Test on Mac
+- ~~Test on Mac~~
 - Append commit messages to file rather than overwrite
 - Simple formatting (date/bitbucket repo title) within auto commits
 - Man pages
-- 
 
 
 
