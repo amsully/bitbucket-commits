@@ -33,23 +33,23 @@ $index"
 		echo "bitbucket push successful"
 
 		# auto-commit to github
-		printf "$repo_string">/etc/bitbucket-commits/commits
+		sudo printf "$repo_string">/etc/bitbucket-commits/commits
 		cd /etc/bitbucket-commits
 		git add commits
 		git commit -m "Auto-Commit"
-		git push --set-upstream origin master
+		git push
 		echo "github push successful"
 		;;
 
 	# Configure Repo and Config file
 	c) 
 		echo "github_url=\"$2\"">/etc/.bitbucket.cfg
-		mkdir /etc/bitbucket-commits
-		cd /etc/bitbucket-commits
+		# mkdir /etc/bitbucket-commits
+		# cd /etc/bitbucket-commits
 		echo "$2 - File of commits to new private bitbucket repository added">/etc/bitbucket-commits/commits
-		git init
+		# git init
 		git remote add origin "$2"
-		git push origin master
+		# git push origin master
 		echo "config established at /etc/.bitbucket.cfg"
 		echo "auto directory established at /etc/bitbucket-commits"
 		;;

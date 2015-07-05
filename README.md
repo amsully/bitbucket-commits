@@ -3,39 +3,61 @@ Don't let private bitbucket repos ruin your github streak! Create your own githu
 
 ## Reqs'
 Developed and tested: Ubuntu 14.04
+Tested: OSX
 
 ## Set-Up
-Clone this repository
 
-Copy git-commit-bitbucket into usr/bin
+### Fork this repository...
 
-'cd' into bitbucket-commits repo and then:
+ such that you have your own instance (eg: Mine is https://github.com/amsully/bitbucket-commits)
+
+### Clone your newly forked repository onto your local machine
+
+Example:
+
 ```
-# cp git-commit-bitbucket /usr/bin/
+git clone https://github.com/<github name here>/bitbucket-commits.git
 ```
 
-## Configure
+### Move repo into /etc/
 
-This command sets up the github destination of the 'auto' repo.
-A config file is created in /etc/.bitbucket.cfg
-The repo that will be pushing to github will be created in /etc/bitbucket-commits
 ```
-git commit-bitbucket -c "direct https link to Auto github repo"
+sudo mv /path/to/bitbucket-commits /etc/
 ```
+
+### Navigate into bitbucket commits
+
+```
+cd /etc/bitbucket-commits
+```
+
+### Copy git-commit-bitbucket into /usr/bin/
+
+```
+sudo cp git-commit-bitbucket /usr/bin/
+```
+
+Notes: The new version requires less configuration but will always push to your bitbucket-commits repo.
 
 ## Use
-When editing a project on your private bitbucket repo, configure git like one would normally (setting remote repo to bitbucket).
 
-When you have added everything you wanted into your commit use:
+Now we want to push to our bitbucket repo but also let github know we are coding up a storm!
+
+### Add changes
+
+In the bitbucket repository you are working on simply add changes as normal.
 
 ```
-git commit-bitbucket -m "title" -m "description" ...etc
+git add *
 ```
-This will perform git commit -m ... on your bitbucket repo as well as add the title and description to your bitbucket-commits repo **and push to the repo on github**. This means git commit-bitbucket is a push to github and a commit for your local bitbucket repo.
 
-Finally perform git push to push the files to bitbucket.
+### Commit/Push to Bitbucket/ Push to Github
 
-Viola! You have committed to your bitbucket private repo AND kept your streak alive ;)
+Now we call one command to do everything for us.
+
+```
+git commit-bitbucket -m "My streak is alive and I pushed to bitbucket!"
+```
 
 ##TODO:
 - Implement error handling (currently very much only a script)
