@@ -53,10 +53,7 @@ $index"
 		echo "config established at /etc/.bitbucket.cfg"
 		echo "auto directory established at /etc/bitbucket-commits"
 		;;
-	r) source .bitbucket.cfg
-		echo "$github_url"
-		;;
-    *) error "Unexpected option ${flag}" ;;
+	*) error "Unexpected option ${flag}" ;;
   esac
 done
 
